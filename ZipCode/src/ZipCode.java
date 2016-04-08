@@ -1,30 +1,47 @@
+/** A class intended to represent a ZIP code
+ * @author Ivan Georgiev
+ */
 public class ZipCode {
 	
+	/**
+	 * A reference to a string of characters that represent the ZIP code.
+	 */
 	private String zipCode;
-			
-	public void setZipCode(String zipCode) throws ZipCodeContentException, ZipCodeLengthException, NullPointerException {
+	
+	/**
+	 * A method used to set the value of the instance variable {@link ZipCode#zipCode zipCode}.
+	 * @param newZipCode This is a reference to a string of characters that represent the new ZIP code.
+	 * @throws NullPointerException This exception is thrown if newZipCode is equal to null.
+	 * @throws ZipCodeLengthException This exception is thrown if newZipCode references a character string of length that is neither 5 nor 9.
+	 * @throws ZipCodeContentException This exception is thrown if the character string referenced by newZipCode does not contain only digits.
+	 */
+	public void setZipCode(String newZipCode) throws NullPointerException, ZipCodeLengthException, ZipCodeContentException {
 		
-		if(zipCode == null) {
+		if(newZipCode == null) {
 			
-			throw new NullPointerException("zipCode is null");
+			throw new NullPointerException("newZipCode is null");
 		}
 		
-		if(zipCode.length() != 5 && zipCode.length() != 9) {
+		if(newZipCode.length() != 5 && newZipCode.length() != 9) {
 		
-			throw new ZipCodeLengthException(zipCode);
+			throw new ZipCodeLengthException(newZipCode);
 		}
 			
-		for(int i = 0; i < zipCode.length(); ++i) {
+		for(int i = 0; i < newZipCode.length(); ++i) {
 			
-			if(!Character.isDigit(zipCode.charAt(i))) {
+			if(!Character.isDigit(newZipCode.charAt(i))) {
 					
-				throw new ZipCodeContentException(zipCode);
+				throw new ZipCodeContentException(newZipCode);
 			}
 		}
 			
-		this.zipCode = zipCode;
+		zipCode = newZipCode;
 	}
 	
+	/**
+	 * A method that returns a reference to the character string that represents the ZIP code.
+	 * @return A String reference to the character string that represents the ZIP code or null if {@link ZipCode#zipCode zipCode} has not been set using the {@link ZipCode#setZipCode setZipCode()} method.
+	 */
 	public String getZipCode() {
 		
 		return zipCode;
