@@ -1,7 +1,7 @@
 /** A class intended to represent a ZIP code
  * @author Ivan Georgiev
  */
-public class ZipCode {
+class ZipCode {
 	
 	/**
 	 * A reference to a string of characters that represent the ZIP code.
@@ -40,36 +40,16 @@ public class ZipCode {
 	
 	/**
 	 * A method that returns a reference to the character string that represents the ZIP code.
-	 * @return A String reference to the character string that represents the ZIP code or null if {@link ZipCode#zipCode zipCode} has not been set using the {@link ZipCode#setZipCode setZipCode()} method.
+	 * @return A {@link java.lang.String String} reference to the character string that represents the ZIP code or null if {@link ZipCode#zipCode zipCode} has not been successfully set using the {@link ZipCode#setZipCode setZipCode()} method.
 	 */
 	public String getZipCode() {
 		
 		return zipCode;
 	}
 	
-	public static void main(String[] args) {
+	@Override
+	public String toString() {
 		
-		String string = "12345";
-		
-		ZipCode zipCode = new ZipCode();
-		
-		try {
-		
-			zipCode.setZipCode(string);
-			
-			System.out.println(String.format("The zip code is %s", zipCode.getZipCode()));
-			
-		}catch(ZipCodeLengthException zipCodeLengthException) {
-			
-			System.out.println(zipCodeLengthException.getMessage());
-		}
-		catch(ZipCodeContentException zipCodeContentException) {
-			
-			System.out.println(zipCodeContentException.getMessage());
-		}
-		catch(NullPointerException nullPointerException) {
-			
-			System.out.println(nullPointerException.getMessage());
-		}
+		return String.format("The ZIP code is: %s", zipCode);
 	}
 }

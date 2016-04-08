@@ -7,8 +7,8 @@ public class ZipCodeContentException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * A parameterized constructor which in turn calls the {@link java.lang.Exception#Exception(String message) Exception(String message)} constructor from the {@link java.lang.Exception java.lang.Exception} class.
-	 * @param zipCode A String reference to a character string that represents the ZIP code.
+	 * A parameterized constructor which in turn calls the {@link java.lang.Exception#Exception(String) Exception(String)} constructor from the {@link java.lang.Exception java.lang.Exception} class.
+	 * @param zipCode A {@link java.lang.String String} reference to a character string that represents the ZIP code.
 	 */
 	public ZipCodeContentException(String zipCode) {
 		
