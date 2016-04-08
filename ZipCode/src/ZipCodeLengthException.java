@@ -8,7 +8,7 @@ public class ZipCodeLengthException extends RuntimeException {
 
 	/**
 	 * A parameterized constructor which in turn calls the {@link java.lang.Exception#Exception(String message) Exception(String message)} constructor from the {@link java.lang.Exception java.lang.Exception} class.
-	 * @param zipCode a String reference to a character string that represents the ZIP code.
+	 * @param zipCode A String reference to a character string that represents the ZIP code.
 	 */
 	public ZipCodeLengthException(String zipCode) {
 		

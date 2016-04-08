@@ -49,7 +49,7 @@ public class ZipCode {
 	
 	public static void main(String[] args) {
 		
-		String string = "123456";
+		String string = "12345";
 		
 		ZipCode zipCode = new ZipCode();
 		
