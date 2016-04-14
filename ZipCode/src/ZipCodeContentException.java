@@ -7,11 +7,11 @@ public class ZipCodeContentException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * A parameterized constructor which in turn calls the {@link java.lang.Exception#Exception(String) Exception(String)} constructor from the {@link java.lang.Exception java.lang.Exception} class.
-	 * @param zipCode A {@link java.lang.String String} reference to a character string that represents the ZIP code.
+	 * Calls the {@link java.lang.Exception#Exception(String) Exception(String)} constructor.
+	 * @param zipCode The invalid ZIP code.
 	 */
-	public ZipCodeContentException(String zipCode) {
+	public ZipCodeContentException(String invalidZipCode) {
 		
-		super(String.format("The content of \"%s\" is not valid for a zip code", zipCode));
+		super(String.format("The content of \"%s\" is not valid for a zip code", invalidZipCode));
 	}
 }

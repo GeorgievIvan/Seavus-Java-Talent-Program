@@ -6,11 +6,11 @@
 public class NumbersApplication {
 	
 	/**
-	 * A method used to convert the word representatives of the digits to {@code int} representatives.
-	 * @param words A reference to a {@link java.lang.String String} array that contains the word representatives of the digits.
-	 * @return An {@code int} array that contains the {@code int} representatives of the digits.
-	 * @throws NullPointerException This exception is thrown if {@code words} equals {@code null}. It will be also rethrown from {@link WordToIntDigitConvertor#convertWordToIntDigit(String) convertWordToIntDigit(String)} from the {@link WordToIntDigitConvertor WordToIntDigitConvertor} class.
-	 * @throws WordToIntConversionException This exception is rethrown from {@link WordToIntDigitConvertor#convertWordToIntDigit(String) convertWordToIntDigit(String)} from the {@link WordToIntDigitConvertor WordToIntDigitConvertor} class.
+	 * Used to convert the word representatives of the digits to {@code int} representatives.
+	 * @param words An array that contains the word representatives of the digits.
+	 * @return An array that contains the {@code int} representatives of the digits.
+	 * @throws NullPointerException Thrown if {@code words} equals {@code null}. It will be also rethrown from {@link WordToIntDigitConvertor#convertWordToIntDigit(String) convertWordToIntDigit(String)}.
+	 * @throws WordToIntConversionException Rethrown from {@link WordToIntDigitConvertor#convertWordToIntDigit(String) convertWordToIntDigit(String)}.
 	 */
 	public static int[] convertWordsToIntDigits(String []words) throws NullPointerException, WordToIntConversionException {
 		
@@ -42,10 +42,10 @@ public class NumbersApplication {
 	
 	/**
 	 * Creates an natural number using an array of digits.
-	 * @param digits An {@code int} array that contains the digits.
-	 * @return A reference to a {@link NaturalNumber NaturalNumber} object.
-	 * @throws NullPointerException This exception is rethrown from {@link NaturalNumber#appendDigits(int[]) appendDigits(int[])} from the {@link NaturalNumber NaturalNumber} class.
-	 * @throws IllegalArgumentException This exception is rethrown from {@link NaturalNumber#appendDigits(int[]) appendDigits(int[])} from the {@link NaturalNumber NaturalNumber} class.
+	 * @param digits An array that contains the digits.
+	 * @return An natural number.
+	 * @throws NullPointerException Rethrown from {@link NaturalNumber#appendDigits(int[]) appendDigits(int[])}.
+	 * @throws IllegalArgumentException Rethrown from {@link NaturalNumber#appendDigits(int[]) appendDigits(int[])}.
 	 */
 	public static NaturalNumber createNaturalNumber(int []digits) throws NullPointerException, IllegalArgumentException {
 
@@ -70,8 +70,8 @@ public class NumbersApplication {
 	
 	/**
 	 * Prints the natural number.
-	 * @param naturalNumber A reference to an {@link NaturalNumber NaturalNumber} object.
-	 * @throws NullPointerException This exception is thrown if {@code naturalNumber} equals {@code null}.
+	 * @param naturalNumber The natural number to be printed.
+	 * @throws NullPointerException Thrown if {@code naturalNumber} equals {@code null}.
 	 */
 	public static void printNaturalNumber(NaturalNumber naturalNumber) throws NullPointerException {
 		

@@ -1,5 +1,5 @@
 /**
- * A class used to convert a word representative of a digit to an int representative of that digit.
+ * Used to convert a word representative of a digit to an int representative of that digit.
  * @author Ivan Georgiev
  *
  */
@@ -7,10 +7,10 @@ class WordToIntDigitConvertor {
 	
 		/**
 		 * Converts a word representative of a digit to an {@code int} representative of that digit.
-		 * @param word A {@link java.lang.String String} reference to a character string that represents the digit as a word.
-		 * @return An {@code int} with a value in the range [0-9].
-		 * @throws NullPointerException This exception is thrown if {@code word} equals {@code null}.
-		 * @throws WordToIntConversionException This exception is thrown if {@code word} references a character string that is not a valid word for a digit.
+		 * @param word The digit represented as a word.
+		 * @return The digit represented as an {@code int}.
+		 * @throws NullPointerException Thrown if {@code word} equals {@code null}.
+		 * @throws WordToIntConversionException Thrown if {@code word} is not a valid word representation of a digit.
 		 * Valid words for digits are: "one", "two", "three", "four", "five", "six", "seven", "eight" and "nine".
 		*/
 	static public int convertWordToIntDigit(String word) throws NullPointerException, WordToIntConversionException {

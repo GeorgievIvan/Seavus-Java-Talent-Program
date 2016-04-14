@@ -1,5 +1,5 @@
 /**
- * This is the main class for this exercise.
+ * The main class for this exercise.
  * @author Ivan Georgiev
  *
  */

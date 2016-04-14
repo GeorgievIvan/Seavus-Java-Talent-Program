@@ -1,19 +1,21 @@
-/** A class intended to represent a ZIP code
+/**
+ * Used to represent a ZIP code.
  * @author Ivan Georgiev
+ *
  */
 class ZipCode {
 	
 	/**
-	 * A reference to a string of characters that represent the ZIP code.
+	 * The ZIP code.
 	 */
 	private String zipCode;
 	
 	/**
-	 * A method used to set the value of the instance variable {@link ZipCode#zipCode zipCode}.
-	 * @param newZipCode This is a reference to a string of characters that represent the new ZIP code.
-	 * @throws NullPointerException This exception is thrown if newZipCode is equal to null.
-	 * @throws ZipCodeLengthException This exception is thrown if newZipCode references a character string of length that is neither 5 nor 9.
-	 * @throws ZipCodeContentException This exception is thrown if the character string referenced by newZipCode does not contain only digits.
+	 * Used to set the ZIP code.
+	 * @param newZipCode The new ZIP code.
+	 * @throws NullPointerException Thrown if {@code newZipCode} equals {@code null}.
+	 * @throws ZipCodeLengthException Thrown if the length of {@code newZipCode} is neither 5 nor 9.
+	 * @throws ZipCodeContentException Thrown if {@code newZipCode} does not contain only digits.
 	 */
 	public void setZipCode(String newZipCode) throws NullPointerException, ZipCodeLengthException, ZipCodeContentException {
 		
@@ -39,8 +41,8 @@ class ZipCode {
 	}
 	
 	/**
-	 * A method that returns a reference to the character string that represents the ZIP code.
-	 * @return A {@link java.lang.String String} reference to the character string that represents the ZIP code or null if {@link ZipCode#zipCode zipCode} has not been successfully set using the {@link ZipCode#setZipCode setZipCode()} method.
+	 * Returns the ZIP code.
+	 * @return The ZIP code or null if the ZIP code has not been successfully set using the {@link ZipCode#setZipCode setZipCode()} method.
 	 */
 	public String getZipCode() {
 		
