@@ -1,16 +1,6 @@
-2:42:38 14-4-2016
+01:13:58 19.04.2016
 hello world
-2:56:46 14-4-2016
-Mamba out
-8:3:24 14-4-2016
-I am now going to watch Regular Show
-0:7:20 15-4-2016
-I am close to being finished with this exercise
-00:20:41 15-04-2016
-Newest message
-00:24:32 15-04-2016
-Hello
-00:31:10 15-04-2016
-This is a new message sent at 00:31
-01:01:31 15-04-2016
-This is a message sent at 01:01
+01:14:03 19.04.2016
+hello world 2
+01:14:47 19.04.2016
+hello world 3
