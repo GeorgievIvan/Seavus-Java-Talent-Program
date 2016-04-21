@@ -7,30 +7,15 @@ import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;;
 
-/**
- * Used to count the number of occurrence of each word ignoring the case. 
- * @author Ivan Georgiev
- *
- */
-public class WordCounter {
+public class ImprovedWordCounter {
 	
-	/**
-	 * Used to store each word and the corresponding number of occurrences.
-	 */
 	private HashMap<String, Integer> hashMap;
 	
-	/**
-	 * Initializes {@link WordCounter#hashMap}.
-	 */
-	public WordCounter() {
+	public ImprovedWordCounter() {
 	
 		hashMap = new HashMap<String, Integer>();
 	}
-	
-	/**
-	 * Used to count a word.
-	 * @param word The word to be counted.
-	 */
+
 	public void countWord(String word) {
 		
 		word = StringUtils.lowerCase(word);
@@ -47,9 +32,6 @@ public class WordCounter {
 		hashMap.put(word, currentCount + 1);
 	}
 	
-	/*
-	 * Used to print each word and the corresponding number of occurrences.
-	 */
 	public void print() {
 		
 		Set <Map.Entry<String, Integer>> set = hashMap.entrySet();
@@ -60,7 +42,7 @@ public class WordCounter {
 			
 			Map.Entry<String, Integer> entry = iterator.next();
 			
-			System.out.println(String.format("%s\t%d", entry.getKey(), entry.getValue()));
+			System.out.println(String.format("word:\t%s\noccurrences:\t%d\n", entry.getKey(), entry.getValue()));
 		}
 	}
 }
