@@ -1,4 +1,4 @@
-package motion_detector;
+package motion_detector.image_capturers;
 
 public interface ImageCapturer {
 	

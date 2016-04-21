@@ -1,2 +1,8 @@
 /MotionDetectorApplication.class
 /motion_detector/
+/alarm/
+/alarm_channel/
+/image_capturer/
+/alarm_channels/
+/image_capturers/
+/motion_detectors/

@@ -1,4 +1,4 @@
-package motion_detector;
+package motion_detector.alarm_channels;
 
 public interface AlarmChannel {
 

@@ -1,6 +1,9 @@
-package motion_detector;
+package motion_detector.motion_detectors;
 
 import java.util.ArrayList;
+
+import motion_detector.alarm_channels.AlarmChannel;
+import motion_detector.image_capturers.ImageCapturer;
 
 public class MotionDetector {
 

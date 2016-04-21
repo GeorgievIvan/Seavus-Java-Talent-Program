@@ -1,8 +1,10 @@
-import motion_detector.ImageCapturer;
-import motion_detector.ConsoleImageCapturer;
-import motion_detector.AlarmChannel;
-import motion_detector.ConsoleAlarmChannel;
-import motion_detector.MotionDetector;
+package motion_detector;
+
+import motion_detector.alarm_channels.AlarmChannel;
+import motion_detector.alarm_channels.ConsoleAlarmChannel;
+import motion_detector.image_capturers.ConsoleImageCapturer;
+import motion_detector.image_capturers.ImageCapturer;
+import motion_detector.motion_detectors.MotionDetector;
 
 public class MotionDetectorApplication {
 
