@@ -1,34 +1,18 @@
+package max_result;
+
 import java.util.Random;
 import java.util.concurrent.Callable;
 import java.util.concurrent.TimeUnit;
 
-/**
- * This class represents a complex calculation.
- * @author Ivan Georgiev
- *
- */
 public class ComplexCalculation implements Callable <Integer> {
 
-	/**
-	 * The order number of the complex calculation.
-	 */
 	private final Integer orderNumber;
 	
-	
-	/**
-	 * Initializes the order number of the complex calculation.
-	 * @param orderNumber The order number of the complex calculation.
-	 */
 	public ComplexCalculation(final Integer orderNumber) {
 	 
 		 this.orderNumber = orderNumber;
 	}
-	
-	/**
-	 * Performs the complex calculation.
-	 * <br>
-	 * This method puts the thread to sleep for 0-5 seconds and returns an integer in the range [0-100].
-	 */
+
 	@Override
 	public Integer call() {
 		
