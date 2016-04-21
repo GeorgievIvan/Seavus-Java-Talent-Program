@@ -1,8 +1,5 @@
-/**
- * The main class for this exercise.
- * @author Ivan Georgiev
- *
- */
+package zip_code;
+
 public class ZipCodeApplication {
 
 	public static void main(String[] args) {
@@ -15,7 +12,7 @@ public class ZipCodeApplication {
 		
 			zipCode.setZipCode(string);
 			
-			System.out.println(zipCode);
+			System.out.println(String.format("The ZIP code is: %s", zipCode.getZipCode()));
 			
 		}catch(ZipCodeLengthException zipCodeLengthException) {
 			
