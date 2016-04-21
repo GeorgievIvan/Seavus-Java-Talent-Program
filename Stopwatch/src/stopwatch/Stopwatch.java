@@ -1,33 +1,16 @@
-/**
- * This class represents the stopwatch.
- * @author Ivan Georgiev
- *
- */
+package stopwatch;
+
 class Stopwatch extends Thread {
 
-	/**
-	 * This enumeration represents the states that the stopwatch can be in.
-	 * @author Ivan Georgiev
-	 *
-	 */
 	enum StopwatchState {
 		
 		RUNNING, STOPPED, PAUSED
 	}
 	
-	/**
-	 * The stopwatch's counter.
-	 */
 	private int counter;
-	
-	/**
-	 * The stopwatch's state.
-	 */
+
 	private StopwatchState stopwatchState;
 	
-	/**
-	 * Initializes the stopwatch's counter and state.
-	 */
 	public Stopwatch() {
 		
 		counter = 0;
@@ -35,10 +18,6 @@ class Stopwatch extends Thread {
 		stopwatchState = StopwatchState.STOPPED;
 	}
 	
-	/**
-	 * Starts the stopwatch.
-	 * @throws IllegalStopwatchStateTransitionException Thrown if the stopwatch's state is not {@code STOPPED}.
-	 */
 	public void startStopwatch() throws IllegalStopwatchStateTransitionException {
 		
 		if(stopwatchState != StopwatchState.STOPPED) {
@@ -51,11 +30,7 @@ class Stopwatch extends Thread {
 		start();
 	}
 	
-	/**
-	 * Stops the stopwatch.
-	 * @throws IllegalStopwatchStateTransitionException Thrown if the stopwatch's state is not {@code RUNNING} or {@code PAUSED}.
-	 */
-	public void stopStopwatch() {
+	public void stopStopwatch() throws IllegalStopwatchStateTransitionException {
 		
 		if(stopwatchState != StopwatchState.RUNNING && stopwatchState != StopwatchState.PAUSED) {
 			
@@ -67,11 +42,7 @@ class Stopwatch extends Thread {
 		interrupt();
 	}
 	
-	/**
-	 * Pauses the stopwatch.
-	 * @throws IllegalStopwatchStateTransitionException Thrown if the stopwatch's state is not {@code RUNNING}.
-	 */
-	public void pauseStopwatch() {
+	public void pauseStopwatch() throws IllegalStopwatchStateTransitionException {
 		
 		if(stopwatchState != StopwatchState.RUNNING) {
 			
@@ -83,11 +54,7 @@ class Stopwatch extends Thread {
 		interrupt();
 	}
 	
-	/**
-	 * Resumes the stopwatch.
-	 * @throws IllegalStopwatchStateTransitionException Thrown if the stopwatch's state is not {@code PAUSED}.
-	 */
-	public void resumeStopwatch() {
+	public void resumeStopwatch() throws IllegalStopwatchStateTransitionException {
 		
 		if(stopwatchState != StopwatchState.PAUSED) {
 			
@@ -102,11 +69,6 @@ class Stopwatch extends Thread {
 		}
 	}
 	
-	/**
-	 * This method prints every passing second unless the stopwatch is paused.
-	 * <br>
-	 * The method returns when the stopwatch is stopped.
-	 */
 	@Override
 	public void run() {
 		
@@ -127,7 +89,7 @@ class Stopwatch extends Thread {
 								wait();
 							}
 						}
-						catch (InterruptedException interruptedException) {
+						catch(InterruptedException interruptedException) {
 							
 							if(stopwatchState == StopwatchState.STOPPED) {
 								
@@ -147,7 +109,7 @@ class Stopwatch extends Thread {
 				
 				sleep(1000);
 			}
-			catch (InterruptedException interruptedException1) {
+			catch(InterruptedException interruptedException1) {
 
 				switch(stopwatchState) {
 				
@@ -162,7 +124,7 @@ class Stopwatch extends Thread {
 								wait();
 							}
 						}
-						catch (InterruptedException interruptedException2) {
+						catch(InterruptedException interruptedException2) {
 	
 							if(stopwatchState == StopwatchState.STOPPED) {
 								

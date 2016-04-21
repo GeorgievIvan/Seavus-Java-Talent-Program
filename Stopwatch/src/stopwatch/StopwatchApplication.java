@@ -1,10 +1,7 @@
+package stopwatch;
+
 import java.util.Scanner;
 
-/**
- * This is the main class for this exercise.
- * @author Ivan Georgiev
- *
- */
 public class StopwatchApplication {
 	
 	public static void main(String[] args) {
