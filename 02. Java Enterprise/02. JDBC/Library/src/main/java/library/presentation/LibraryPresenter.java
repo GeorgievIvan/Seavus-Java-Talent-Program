@@ -1,6 +1,6 @@
 package library.presentation;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import library.business.Book;
@@ -65,10 +65,10 @@ public class LibraryPresenter {
 	private void registerBook() {
 		
 		System.out.print("ISBN: ");
-		String bookIsbn = scanner.nextLine();
+		final String bookIsbn = scanner.nextLine();
 		
 		System.out.print("Title: ");
-		String bookTitle = scanner.nextLine();
+		final String bookTitle = scanner.nextLine();
 
 		bookService.registerBook(bookIsbn, bookTitle);
 		
@@ -77,11 +77,11 @@ public class LibraryPresenter {
 	
 	private void listBooks() {
 		
-		ArrayList<Book> books = bookService.getAllBooks();
+		final List<Book> books = bookService.getAllBooks();
 		
 		System.out.println(String.format("%-13s\t%-13s\t%s", "ID", "ISBN", "Title"));
 		
-		for(Book book : books) {
+		for(final Book book : books) {
 			
 			System.out.println(String.format("%-13d\t%-13s\t%s", book.getId(), book.getIsbn(), book.getTitle()));
 		}
@@ -90,10 +90,10 @@ public class LibraryPresenter {
 	private void updateBook() {
 		
 		System.out.print("ID: ");
-		long bookId = Long.parseLong(scanner.nextLine());
+		final Long bookId = Long.parseLong(scanner.nextLine());
 		
 		System.out.print("New title: ");
-		String newBookTitle = scanner.nextLine();
+		final String newBookTitle = scanner.nextLine();
 		
 		bookService.updateBook(bookId, newBookTitle);
 		
@@ -103,7 +103,7 @@ public class LibraryPresenter {
 	private void unregisterBook() {
 		
 		System.out.print("ID: ");
-		long bookId = Long.parseLong(scanner.nextLine());
+		final Long bookId = Long.parseLong(scanner.nextLine());
 		
 		bookService.unregisterBook(bookId);
 		

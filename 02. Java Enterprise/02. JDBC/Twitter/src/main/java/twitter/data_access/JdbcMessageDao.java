@@ -2,6 +2,7 @@ package twitter.data_access;
 
 import twitter.business.Message;
 import java.util.ArrayList;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -32,7 +33,7 @@ public class JdbcMessageDao implements MessageDao {
 			
 			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -43,13 +44,13 @@ public class JdbcMessageDao implements MessageDao {
 			
 			preparedStatement = connection.prepareStatement("insert into message(text, timestamp) values(?, ?)");
 		}
-		catch(SQLException sqlException1) {
+		catch(final SQLException sqlException1) {
 			
 			try {
 				
 				connection.close();
 			} 
-			catch(SQLException sqlException2) {
+			catch(final SQLException sqlException2) {
 				
 				throw new RuntimeException(sqlException2);
 			}
@@ -64,7 +65,7 @@ public class JdbcMessageDao implements MessageDao {
 			
 			preparedStatement.executeUpdate();
 		}
-		catch(SQLException sqlException1) {
+		catch(final SQLException sqlException1) {
 			
 			throw new RuntimeException(sqlException1);
 		}
@@ -74,7 +75,7 @@ public class JdbcMessageDao implements MessageDao {
 				
 				preparedStatement.close();
 			}
-			catch(SQLException sqlException2) {
+			catch(final SQLException sqlException2) {
 
 				throw new RuntimeException(sqlException2);
 			}
@@ -84,7 +85,7 @@ public class JdbcMessageDao implements MessageDao {
 					
 					connection.close();
 				} 
-				catch(SQLException sqlException) {
+				catch(final SQLException sqlException) {
 					
 					throw new RuntimeException(sqlException);
 				}
@@ -93,7 +94,7 @@ public class JdbcMessageDao implements MessageDao {
 	}
 
 	@Override
-	public ArrayList<Message> readAllMessages(final boolean orderByDateDescending) throws RuntimeException {
+	public List<Message> readAllMessages(final boolean orderByDateDescending) throws RuntimeException {
 
 		Connection connection;
 		
@@ -101,7 +102,7 @@ public class JdbcMessageDao implements MessageDao {
 			
 			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -112,13 +113,13 @@ public class JdbcMessageDao implements MessageDao {
 			
 			statement = connection.createStatement();
 		}
-		catch(SQLException sqlException1) {
+		catch(final SQLException sqlException1) {
 			
 			try {
 				
 				connection.close();
 			}
-			catch(SQLException sqlException2) {
+			catch(final SQLException sqlException2) {
 				
 				throw new RuntimeException(sqlException2);
 			}
@@ -143,16 +144,16 @@ public class JdbcMessageDao implements MessageDao {
 			
 			while (resultSet.next()) {
 				
-				Long messageId = resultSet.getLong("id");
-				String messageText = resultSet.getString("text");
-				Timestamp messageTimestamp = resultSet.getTimestamp("timestamp");
+				final Long messageId = resultSet.getLong("id");
+				final String messageText = resultSet.getString("text");
+				final Timestamp messageTimestamp = resultSet.getTimestamp("timestamp");
 				
 				final Message message = new Message(messageId, messageText, messageTimestamp);
 				
 				messages.add(message);
 			}
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -162,7 +163,7 @@ public class JdbcMessageDao implements MessageDao {
 				
 				statement.close();
 			}
-			catch(SQLException sqlException) {
+			catch(final SQLException sqlException) {
 				
 				throw new RuntimeException(sqlException);
 			}
@@ -172,7 +173,7 @@ public class JdbcMessageDao implements MessageDao {
 					
 					connection.close();
 				}
-				catch(SQLException sqlException) {
+				catch(final SQLException sqlException) {
 					
 					throw new RuntimeException(sqlException);
 				}

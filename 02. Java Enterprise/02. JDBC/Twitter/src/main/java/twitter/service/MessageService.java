@@ -2,7 +2,7 @@ package twitter.service;
 
 import twitter.business.Message;
 import twitter.data_access.MessageDao;
-import java.util.ArrayList;
+import java.util.List;
 
 public class MessageService {
 
@@ -20,7 +20,7 @@ public class MessageService {
 		messageDao.insertMessage(message);
 	}
 	
-	public ArrayList<Message> getAllMessages(final boolean orderByDateDescending) {
+	public List<Message> getAllMessages(final boolean orderByDateDescending) {
 		
 		return messageDao.readAllMessages(orderByDateDescending);
 	}

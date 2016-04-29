@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import library.business.Book;
 
@@ -32,7 +33,7 @@ public class JdbcBookDao implements BookDao {
 			
 			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -43,13 +44,13 @@ public class JdbcBookDao implements BookDao {
 			
 			preparedStatement = connection.prepareStatement("insert into book(isbn, title) values (?, ?)");
 		}
-		catch(SQLException sqlException1) {
+		catch(final SQLException sqlException1) {
 			
 			try {
 				
 				connection.close();
 			}
-			catch(SQLException sqlException2) {
+			catch(final SQLException sqlException2) {
 				
 				throw new RuntimeException(sqlException2);
 			}
@@ -66,7 +67,7 @@ public class JdbcBookDao implements BookDao {
 			preparedStatement.executeUpdate();
 
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -76,7 +77,7 @@ public class JdbcBookDao implements BookDao {
 				
 				preparedStatement.close();
 			}
-			catch(SQLException sqlException) {
+			catch(final SQLException sqlException) {
 				
 				throw new RuntimeException(sqlException);
 			}
@@ -86,7 +87,7 @@ public class JdbcBookDao implements BookDao {
 					
 					connection.close();
 				}
-				catch(SQLException sqlException) {
+				catch(final SQLException sqlException) {
 					
 					throw new RuntimeException(sqlException);
 				}
@@ -95,7 +96,7 @@ public class JdbcBookDao implements BookDao {
 	}
 
 	@Override
-	public ArrayList<Book> readAllBooks() {
+	public List<Book> readAllBooks() {
 		
 		Connection connection;
 		
@@ -103,7 +104,7 @@ public class JdbcBookDao implements BookDao {
 			
 			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -114,13 +115,13 @@ public class JdbcBookDao implements BookDao {
 		
 			statement = connection.createStatement();
 		}
-		catch(SQLException sqlException1) {
+		catch(final SQLException sqlException1) {
 			
 			try {
 				
 				connection.close();
 			}
-			catch(SQLException sqlException2) {
+			catch(final SQLException sqlException2) {
 				
 				throw new RuntimeException(sqlException2);
 			}
@@ -134,7 +135,7 @@ public class JdbcBookDao implements BookDao {
 			
 			final ResultSet resultSet = statement.executeQuery("select * from book");
 			
-			while (resultSet.next()) {
+			while(resultSet.next()) {
 				
 				final Long bookId = resultSet.getLong("id");
 				final String bookIsbn= resultSet.getString("isbn");
@@ -145,7 +146,7 @@ public class JdbcBookDao implements BookDao {
 				books.add(book);
 			}
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -155,7 +156,7 @@ public class JdbcBookDao implements BookDao {
 				
 				statement.close();
 			}
-			catch(SQLException sqlException) {
+			catch(final SQLException sqlException) {
 				
 				throw new RuntimeException(sqlException);
 			}
@@ -165,7 +166,7 @@ public class JdbcBookDao implements BookDao {
 					
 					connection.close();
 				}
-				catch(SQLException sqlException) {
+				catch(final SQLException sqlException) {
 					
 					throw new RuntimeException(sqlException);
 				}
@@ -176,15 +177,15 @@ public class JdbcBookDao implements BookDao {
 	}
 
 	@Override
-	public void updateBook(final long bookId, final String newBookTitle) {
+	public void updateBook(final Long bookId, final String newBookTitle) {
 		
-Connection connection;
+		Connection connection;
 		
 		try {
 			
 			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -195,13 +196,13 @@ Connection connection;
 			
 			preparedStatement = connection.prepareStatement("update book set title = ? where id = ?");
 		}
-		catch(SQLException sqlException1) {
+		catch(final SQLException sqlException1) {
 			
 			try {
 				
 				connection.close();
 			}
-			catch(SQLException sqlException2) {
+			catch(final SQLException sqlException2) {
 				
 				throw new RuntimeException(sqlException2);
 			}
@@ -218,7 +219,7 @@ Connection connection;
 			preparedStatement.executeUpdate();
 
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -228,7 +229,7 @@ Connection connection;
 				
 				preparedStatement.close();
 			}
-			catch(SQLException sqlException) {
+			catch(final SQLException sqlException) {
 				
 				throw new RuntimeException(sqlException);
 			}
@@ -238,7 +239,7 @@ Connection connection;
 					
 					connection.close();
 				}
-				catch(SQLException sqlException) {
+				catch(final SQLException sqlException) {
 					
 					throw new RuntimeException(sqlException);
 				}
@@ -247,7 +248,7 @@ Connection connection;
 	}
 
 	@Override
-	public void deleteBook(final long bookId) {
+	public void deleteBook(final Long bookId) {
 		
 		Connection connection;
 		
@@ -255,7 +256,7 @@ Connection connection;
 			
 			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -266,13 +267,13 @@ Connection connection;
 			
 			preparedStatement = connection.prepareStatement("delete from book where id = ?");
 		}
-		catch(SQLException sqlException1) {
+		catch(final SQLException sqlException1) {
 			
 			try {
 				
 				connection.close();
 			}
-			catch(SQLException sqlException2) {
+			catch(final SQLException sqlException2) {
 				
 				throw new RuntimeException(sqlException2);
 			}
@@ -288,7 +289,7 @@ Connection connection;
 			preparedStatement.executeUpdate();
 
 		}
-		catch(SQLException sqlException) {
+		catch(final SQLException sqlException) {
 			
 			throw new RuntimeException(sqlException);
 		}
@@ -298,7 +299,7 @@ Connection connection;
 				
 				preparedStatement.close();
 			}
-			catch(SQLException sqlException) {
+			catch(final SQLException sqlException) {
 				
 				throw new RuntimeException(sqlException);
 			}
@@ -308,7 +309,7 @@ Connection connection;
 					
 					connection.close();
 				}
-				catch(SQLException sqlException) {
+				catch(final SQLException sqlException) {
 					
 					throw new RuntimeException(sqlException);
 				}

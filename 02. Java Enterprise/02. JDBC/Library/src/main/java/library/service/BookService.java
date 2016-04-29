@@ -1,6 +1,6 @@
 package library.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import library.business.Book;
 import library.data_access.BookDao;
@@ -21,19 +21,17 @@ public class BookService {
 		bookDao.insertBook(book);
 	}
 	
-	public ArrayList<Book> getAllBooks() {
-		
-		final ArrayList<Book> books = bookDao.readAllBooks();
-		
-		return books;
+	public List<Book> getAllBooks() {
+			
+		return bookDao.readAllBooks();
 	}
 	
-	public void updateBook(final long bookId, final String newBookTitle) {
+	public void updateBook(final Long bookId, final String newBookTitle) {
 
 		bookDao.updateBook(bookId, newBookTitle);
 	}
 	
-	public void unregisterBook(final long bookId) {
+	public void unregisterBook(final Long bookId) {
 
 		bookDao.deleteBook(bookId);
 	}

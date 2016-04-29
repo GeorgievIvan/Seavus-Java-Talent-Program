@@ -9,7 +9,7 @@ public class LibraryApplication {
 
 	public static void main(String []args) {
 		
-		final String databaseUrl = "jdbc:postgresql://localhost:5432/library";
+		final String databaseUrl = "jdbc:postgresql://localhost:5432/jdbc_library";
 		final String databaseUsername = "postgres";
 		final String databasePassword = "Password1";
 		

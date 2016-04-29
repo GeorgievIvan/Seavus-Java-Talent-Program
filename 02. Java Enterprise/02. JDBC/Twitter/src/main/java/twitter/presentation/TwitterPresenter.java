@@ -4,7 +4,7 @@ import twitter.business.Message;
 import twitter.service.MessageService;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TwitterPresenter {
@@ -60,19 +60,19 @@ public class TwitterPresenter {
 				
 		messageController.saveMessage(messageText);
 		
-		System.out.println("Your message has been saved.");
+		System.out.println("Your message was saved.");
 	}
 	
 	private void listMessages() {
 		
-		final ArrayList<Message> messages = messageController.getAllMessages(true);
+		final List<Message> messages = messageController.getAllMessages(true);
 		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
 		
-		System.out.println(String.format("%-19s\t%-19s\t%s", "ID", "Timestamp", "Text"));
+		System.out.println(String.format("%-19s\t%s", "Timestamp", "Text"));
 		
-		for(Message message : messages) {
+		for(final Message message : messages) {
 			
-			System.out.println(String.format("%-19d\t%-19s\t%s", message.getId(), simpleDateFormat.format(message.getTimestamp()), message.getText()));
+			System.out.println(String.format("%-19s\t%s", simpleDateFormat.format(message.getTimestamp()), message.getText()));
 		}
 	}
 	

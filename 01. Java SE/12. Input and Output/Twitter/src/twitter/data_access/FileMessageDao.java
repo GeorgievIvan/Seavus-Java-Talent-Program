@@ -4,6 +4,7 @@ import twitter.business.Message;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -32,7 +33,7 @@ public class FileMessageDao implements MessageDao {
 			
 			fileWriter = new FileWriter(filePath, true);
 		}
-		catch (IOException ioException) {
+		catch(final IOException ioException) {
 			
 			throw new RuntimeException(ioException);
 		}
@@ -47,7 +48,7 @@ public class FileMessageDao implements MessageDao {
 			bufferedWriter.write(message.getText());
 			bufferedWriter.newLine();
 		}
-		catch(IOException ioException) {
+		catch(final IOException ioException) {
 			
 			throw new RuntimeException(ioException);
 		}
@@ -57,7 +58,7 @@ public class FileMessageDao implements MessageDao {
 				
 				bufferedWriter.close();
 			}
-			catch(IOException ioException) {
+			catch(final IOException ioException) {
 				
 				throw new RuntimeException(ioException);
 			}
@@ -65,16 +66,17 @@ public class FileMessageDao implements MessageDao {
 	}
 
 	@Override
-	public ArrayList<Message> readAllMessages(final boolean orderByDateDesc) {
+	public List<Message> readAllMessages(final boolean orderByDateDesc) {
 
 		final File inputFile = new File(filePath);
+		
 		FileReader fileReader;
 		
 		try {
 			
 			fileReader = new FileReader(inputFile);
 		}
-		catch(FileNotFoundException fileNotFoundException) {
+		catch(final FileNotFoundException fileNotFoundException) {
 
 			throw new RuntimeException(fileNotFoundException);
 		}
@@ -93,13 +95,13 @@ public class FileMessageDao implements MessageDao {
 				messageDateString = bufferedReader.readLine();
 				messageText = bufferedReader.readLine();
 			}
-			catch(IOException ioException1) {
+			catch(final IOException ioException1) {
 				
 				try {
 					
 					bufferedReader.close();
 				}
-				catch(IOException ioException2) {
+				catch(final IOException ioException2) {
 
 					throw new RuntimeException(ioException2);
 				}
@@ -123,7 +125,7 @@ public class FileMessageDao implements MessageDao {
 			
 			bufferedReader.close();
 		}
-		catch(IOException ioException) {
+		catch(final IOException ioException) {
 
 			throw new RuntimeException(ioException);
 		}
