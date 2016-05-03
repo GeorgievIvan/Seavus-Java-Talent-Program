@@ -19,6 +19,22 @@ public class HibernateBookDao implements BookDao {
 	}
 	
 	@Override
+	public List<Book> readAllBooks() {
+		
+		final Session session = sessionFactory.openSession();
+		
+		final String hql = "FROM Book";
+		
+		final Query query = session.createQuery(hql);
+		
+		final List books = query.list();
+		
+		session.close();
+		
+		return books;
+	}
+	
+	@Override
 	public void insertBook(final Book book) {
 		
 		final Session session = sessionFactory.openSession();
@@ -49,23 +65,7 @@ public class HibernateBookDao implements BookDao {
 	}
 
 	@Override
-	public List<Book> readAllBooks() {
-		
-		final Session session = sessionFactory.openSession();
-		
-		final String hql = "FROM Book";
-		
-		final Query query = session.createQuery(hql);
-		
-		final List books = query.list();
-		
-		session.close();
-		
-		return books;
-	}
-
-	@Override
-	public void updateBook(final long bookId, final String newBookTitle) {
+	public void updateBook(final Long bookId, final String newBookTitle) {
 
 		final Session session = sessionFactory.openSession();
 		
@@ -82,13 +82,13 @@ public class HibernateBookDao implements BookDao {
 	}
 
 	@Override
-	public void deleteBook(final long bookId) {
+	public void deleteBook(final Long bookId) {
 
 		final Session session = sessionFactory.openSession();
 		
 		final String hql = "delete from Book where id = :bookId";
 		
-		Query query = session.createQuery(hql);
+		final Query query = session.createQuery(hql);
 		
 		query.setParameter("bookId", bookId);
 		

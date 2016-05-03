@@ -17,8 +17,7 @@ public class TwitterApplication {
 		TwitterPresenter twitterPresenter = new TwitterPresenter(messageController);
 		
 		twitterPresenter.run();
-		//
-		*/ 
+		*/
 		 
 		// Hibernate
 		MessageDao messageDao = new JdbcMessageDao("jdbc:postgresql://localhost:5432/jdbc_twitter", "postgres", "Password1");
@@ -26,6 +25,5 @@ public class TwitterApplication {
 		TwitterPresenter twitterPresenter = new TwitterPresenter(messageController);
 		
 		twitterPresenter.run();
-		//
 	}
 }

@@ -35,13 +35,13 @@ public class TwitterPresenter {
 			switch(userInput) {
 			
 				case "1":
-					newMessage();
-				break;
-				
-				case "2":
 					listMessages();
 				break;
 				
+				case "2":
+					newMessage();
+				break;
+	
 				case "3":
 					System.out.println("Goodbye.");
 					return;
@@ -52,15 +52,13 @@ public class TwitterPresenter {
 		}
 	}
 	
-	private void newMessage() {
+	private void showMenu() {
 		
-		System.out.println("Enter your message:");
-		
-		final String messageText = scanner.nextLine();
-				
-		messageController.saveMessage(messageText);
-		
-		System.out.println("Your message was saved.");
+		System.out.println("--------MENU--------");
+		System.out.println("1. list messages.");
+		System.out.println("2. new message.");
+		System.out.println("3. exit.");
+		System.out.println("--------------------");
 	}
 	
 	private void listMessages() {
@@ -76,12 +74,14 @@ public class TwitterPresenter {
 		}
 	}
 	
-	private void showMenu() {
+	private void newMessage() {
 		
-		System.out.println("--------MENU--------");
-		System.out.println("1. new message.");
-		System.out.println("2. list messages.");
-		System.out.println("3. exit.");
-		System.out.println("--------------------");
+		System.out.println("Enter your message:");
+		
+		final String messageText = scanner.nextLine();
+				
+		messageController.saveMessage(messageText);
+		
+		System.out.println("Your message was saved.");
 	}
 }

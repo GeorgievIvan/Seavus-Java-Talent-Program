@@ -25,47 +25,6 @@ public class FileMessageDao implements MessageDao {
 	}
 	
 	@Override
-	public void insertMessage(final Message message) throws RuntimeException {
-	
-		FileWriter fileWriter;
-		
-		try {
-			
-			fileWriter = new FileWriter(filePath, true);
-		}
-		catch (final IOException ioException) {
-			
-			throw new RuntimeException(ioException);
-		}
-		
-		final PrintWriter printWriter = new PrintWriter(fileWriter);
-		final BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
-		
-		try {
-			
-			bufferedWriter.write(message.getTimestamp().toString());
-			bufferedWriter.newLine();
-			bufferedWriter.write(message.getText());
-			bufferedWriter.newLine();
-		}
-		catch(final IOException ioException) {
-			
-			throw new RuntimeException(ioException);
-		}
-		finally {
-			
-			try {
-				
-				bufferedWriter.close();
-			}
-			catch(final IOException ioException) {
-				
-				throw new RuntimeException(ioException);
-			}
-		}
-	}
-
-	@Override
 	public List<Message> readAllMessages(final boolean orderByDateDesc) {
 
 		final File inputFile = new File(filePath);
@@ -142,5 +101,46 @@ public class FileMessageDao implements MessageDao {
 		}
 		
 		return messages;
+	}
+	
+	@Override
+	public void insertMessage(final Message message) throws RuntimeException {
+	
+		FileWriter fileWriter;
+		
+		try {
+			
+			fileWriter = new FileWriter(filePath, true);
+		}
+		catch (final IOException ioException) {
+			
+			throw new RuntimeException(ioException);
+		}
+		
+		final PrintWriter printWriter = new PrintWriter(fileWriter);
+		final BufferedWriter bufferedWriter = new BufferedWriter(printWriter);
+		
+		try {
+			
+			bufferedWriter.write(message.getTimestamp().toString());
+			bufferedWriter.newLine();
+			bufferedWriter.write(message.getText());
+			bufferedWriter.newLine();
+		}
+		catch(final IOException ioException) {
+			
+			throw new RuntimeException(ioException);
+		}
+		finally {
+			
+			try {
+				
+				bufferedWriter.close();
+			}
+			catch(final IOException ioException) {
+				
+				throw new RuntimeException(ioException);
+			}
+		}
 	}
 }

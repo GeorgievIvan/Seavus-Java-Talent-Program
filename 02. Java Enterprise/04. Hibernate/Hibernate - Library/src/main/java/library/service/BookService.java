@@ -14,16 +14,18 @@ public class BookService {
 		this.bookDao = bookDao;
 	}
 	
-	public void registerBook(final String bookIsbn, final String bookTitle) {
-		
-		Book book = new Book(bookIsbn, bookTitle);
-		
-		bookDao.insertBook(book);
-	}
-	
 	public List<Book> getAllBooks() {
 		
 		return bookDao.readAllBooks();
+	}
+	
+	public void registerBook(final String bookIsbn, final String bookTitle) {
+		
+		final Book book = new Book();
+		book.setIsbn(bookIsbn);
+		book.setTitle(bookTitle);
+		
+		bookDao.insertBook(book);
 	}
 	
 	public void updateBook(final Long bookId, final String newBookTitle) {

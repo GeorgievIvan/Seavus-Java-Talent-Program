@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface MessageDao {
 	
-	void insertMessage(final Message message) throws RuntimeException;
-	
 	List<Message> readAllMessages(final boolean orderByDateDescending) throws RuntimeException;
+	
+	void insertMessage(final Message message) throws RuntimeException;
 }

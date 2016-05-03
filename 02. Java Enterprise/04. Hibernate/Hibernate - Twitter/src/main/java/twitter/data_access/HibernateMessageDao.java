@@ -19,6 +19,22 @@ public class HibernateMessageDao implements MessageDao {
 	}
 	
 	@Override
+	public List<Message> readAllMessages(final boolean orderByDateDescending) throws RuntimeException {
+
+		final Session session = sessionFactory.openSession();
+		
+		final String hql = "from Message order by timestamp desc";
+		
+		final Query query = session.createQuery(hql);
+		
+		final List messages = query.list();
+		
+		session.close();
+		
+		return messages;
+	}
+	
+	@Override
 	public void insertMessage(final Message message) throws RuntimeException {
 
 		final Session session = sessionFactory.openSession();
@@ -46,21 +62,5 @@ public class HibernateMessageDao implements MessageDao {
 			
 			session.close();
 		}
-	}
-
-	@Override
-	public List<Message> readAllMessages(final boolean orderByDateDescending) throws RuntimeException {
-
-		final Session session = sessionFactory.openSession();
-		
-		final String hql = "FROM Message";
-		
-		final Query query = session.createQuery(hql);
-		
-		final List messages = query.list();
-		
-		session.close();
-		
-		return messages;
 	}
 }

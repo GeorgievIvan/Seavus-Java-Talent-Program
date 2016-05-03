@@ -18,28 +18,7 @@ public class Book {
 	
 	@Column(name = "title", nullable = false)
 	private String title;
-	
-	public Book() {
 		
-		id = null;
-		isbn = null;
-		title = null;
-	}
-	
-	public Book(final String isbn, final String title) {
-		
-		id = null;
-		this.isbn = isbn;
-		this.title = title;
-	}
-	
-	public Book(final long id, final String isbn, final String title) {
-		
-		this.id = id;
-		this.isbn = isbn;
-		this.title = title;
-	}
-	
 	public Long getId() {
 		
 		return id;

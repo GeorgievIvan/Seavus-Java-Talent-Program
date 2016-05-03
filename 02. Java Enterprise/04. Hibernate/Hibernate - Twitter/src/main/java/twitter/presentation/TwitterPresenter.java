@@ -35,11 +35,11 @@ public class TwitterPresenter {
 			switch(userInput) {
 			
 				case "1":
-					newMessage();
-				break;
-				
-				case "2":
 					listMessages();
+				break;
+			
+				case "2":
+					newMessage();
 				break;
 				
 				case "3":
@@ -52,6 +52,29 @@ public class TwitterPresenter {
 		}
 	}
 	
+	
+	private void showMenu() {
+		
+		System.out.println("--------MENU--------");
+		System.out.println("1. list messages.");
+		System.out.println("2. new message.");
+		System.out.println("3. exit.");
+		System.out.println("--------------------");
+	}
+		
+	private void listMessages() {
+		
+		final List<Message> messages = messageController.getAllMessages(true);
+		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
+		
+		System.out.println(String.format("%-19s\t%s", "Timestamp", "Text"));
+		
+		for(final Message message : messages) {
+			
+			System.out.println(String.format("%-19s\t%s", simpleDateFormat.format(message.getTimestamp()), message.getText()));
+		}
+	}
+	
 	private void newMessage() {
 		
 		System.out.println("Enter your message:");
@@ -61,27 +84,5 @@ public class TwitterPresenter {
 		messageController.saveMessage(messageText);
 		
 		System.out.println("Your message was saved.");
-	}
-	
-	private void listMessages() {
-		
-		final List<Message> messages = messageController.getAllMessages(true);
-		final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss dd.MM.yyyy");
-		
-		System.out.println(String.format("%-19s\t%s", "Timestamp", "Text"));
-		
-		for(Message message : messages) {
-			
-			System.out.println(String.format("%-19s\t%s", simpleDateFormat.format(message.getTimestamp()), message.getText()));
-		}
-	}
-	
-	private void showMenu() {
-		
-		System.out.println("--------MENU--------");
-		System.out.println("1. new message.");
-		System.out.println("2. list messages.");
-		System.out.println("3. exit.");
-		System.out.println("--------------------");
 	}
 }

@@ -13,15 +13,15 @@ public class MessageService {
 		this.messageDao = messageDao;
 	}
 	
+	public List<Message> getAllMessages(final boolean orderByDateDescending) {
+		
+		return messageDao.readAllMessages(orderByDateDescending);
+	}
+	
 	public void saveMessage(final String messageText) {
 		
 		final Message message = new Message(messageText);
 		
 		messageDao.insertMessage(message);
-	}
-	
-	public List<Message> getAllMessages(final boolean orderByDateDescending) {
-		
-		return messageDao.readAllMessages(orderByDateDescending);
 	}
 }

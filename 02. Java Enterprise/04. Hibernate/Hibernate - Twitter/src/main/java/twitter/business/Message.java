@@ -16,40 +16,19 @@ public class Message {
 	@Id @GeneratedValue @Column(name = "id")
 	private Long id;
 	
-	@Column(name = "text")
+	@Column(name = "text", nullable = false)
 	private String text;
 	
-	@Column(name = "timestamp")
+	@Column(name = "timestamp", nullable = false)
 	private Timestamp timestamp;
 	
 	public Message() {
 		
 		id = null;
 		text = null;
-		timestamp = null;
-	}
-	
-	public Message(final String text) {
-		
-		id = null;
-		this.text = text;
 		timestamp = new Timestamp(Calendar.getInstance().getTime().getTime());
 	}
-	
-	public Message(final String text, final Timestamp timestamp) {
-		
-		id = null;
-		this.text = text;
-		this.timestamp = timestamp;
-	}
-	
-	public Message(final Long id, final String text, final Timestamp timestamp) {
-		
-		this.id = id;
-		this.text = text;
-		this.timestamp = timestamp;
-	}
-	
+			
 	public Long getId() {
 		
 		return id;

@@ -35,65 +35,76 @@ public class LibraryPresenter {
 			String input = scanner.nextLine();
 			
 			switch(input) {
-			
-			case "1":
-				registerBook();
-			break;
-			
-			case "2":
-				listBooks();
-			break;
-			
-			case "3":
-				updateBook();
-			break;
-			
-			case "4":
-				unregisterBook();
-			break;
-			
-			case "5":
-				System.out.println("Goodbye.");
-				return;
+
+				case "1":
+					listBooks();
+				break;
 				
-			default:
-				System.out.println("Invalid command.");
+				case "2":
+					registerBook();
+				break;
+				
+				case "3":
+					updateBook();
+				break;
+				
+				case "4":
+					unregisterBook();
+				break;
+				
+				case "5":
+					System.out.println("Goodbye.");
+					return;
+					
+				default:
+					System.out.println("Invalid command.");
 			}
+		}
+	}
+	
+	private void showMenu() {
+		
+		System.out.println("--------MENU--------");
+		System.out.println("1. List books.");
+		System.out.println("2. Register book.");
+		System.out.println("3. Update book.");
+		System.out.println("4. Unregister book.");
+		System.out.println("5. Exit.");
+		System.out.println("--------------------");
+	}
+	
+	private void listBooks() {
+		
+		final List<Book> books = bookService.getAllBooks();
+		
+		System.out.println(String.format("%-13s\t%-13s\t%s", "ID", "ISBN", "Title"));
+		
+		for(final Book book : books) {
+			
+			System.out.println(String.format("%-13d\t%-13s\t%s", book.getId(), book.getIsbn(), book.getTitle()));
 		}
 	}
 	
 	private void registerBook() {
 		
 		System.out.print("ISBN: ");
-		String bookIsbn = scanner.nextLine();
+		final String bookIsbn = scanner.nextLine();
 		
 		System.out.print("Title: ");
-		String bookTitle = scanner.nextLine();
+		final String bookTitle = scanner.nextLine();
 
 		bookService.registerBook(bookIsbn, bookTitle);
 		
 		System.out.println("The book was successfully registered.");
 	}
 	
-	private void listBooks() {
-		
-		List<Book> books = bookService.getAllBooks();
-		
-		System.out.println(String.format("%-13s\t%-13s\t%s", "ID", "ISBN", "Title"));
-		
-		for(Book book : books) {
-			
-			System.out.println(String.format("%-13d\t%-13s\t%s", book.getId(), book.getIsbn(), book.getTitle()));
-		}
-	}
-	
 	private void updateBook() {
 		
 		System.out.print("ID: ");
-		Long bookId = Long.parseLong(scanner.nextLine());
+		final Long bookId = Long.parseLong(scanner.nextLine());
 
 		System.out.print("New title: ");
-		String newBookTitle = scanner.nextLine();
+		final String newBookTitle = scanner.nextLine();
 		
 		bookService.updateBook(bookId, newBookTitle);
 
@@ -108,16 +119,5 @@ public class LibraryPresenter {
 		bookService.unregisterBook(bookId);
 
 		System.out.println("The book was successfully unregistered.");
-	}
-	
-	private void showMenu() {
-		
-		System.out.println("--------MENU--------");
-		System.out.println("1. Register book.");
-		System.out.println("2. List books.");
-		System.out.println("3. Update book.");
-		System.out.println("4. Unregister book.");
-		System.out.println("5. Exit.");
-		System.out.println("--------------------");
 	}
 }

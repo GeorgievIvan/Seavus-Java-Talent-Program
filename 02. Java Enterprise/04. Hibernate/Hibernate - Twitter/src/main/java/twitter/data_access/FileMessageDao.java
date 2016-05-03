@@ -33,7 +33,7 @@ public class FileMessageDao implements MessageDao {
 			
 			fileWriter = new FileWriter(filePath, true);
 		}
-		catch (IOException ioException) {
+		catch (final IOException ioException) {
 			
 			throw new RuntimeException(ioException);
 		}
@@ -48,7 +48,7 @@ public class FileMessageDao implements MessageDao {
 			bufferedWriter.write(message.getText());
 			bufferedWriter.newLine();
 		}
-		catch(IOException ioException) {
+		catch(final IOException ioException) {
 			
 			throw new RuntimeException(ioException);
 		}
@@ -58,13 +58,13 @@ public class FileMessageDao implements MessageDao {
 				
 				bufferedWriter.close();
 			}
-			catch(IOException ioException) {
+			catch(final IOException ioException) {
 				
 				throw new RuntimeException(ioException);
 			}
 		}
 	}
-
+	
 	@Override
 	public List<Message> readAllMessages(final boolean orderByDateDesc) {
 
@@ -75,7 +75,7 @@ public class FileMessageDao implements MessageDao {
 			
 			fileReader = new FileReader(inputFile);
 		}
-		catch(FileNotFoundException fileNotFoundException) {
+		catch(final FileNotFoundException fileNotFoundException) {
 
 			throw new RuntimeException(fileNotFoundException);
 		}
@@ -94,13 +94,13 @@ public class FileMessageDao implements MessageDao {
 				messageDateString = bufferedReader.readLine();
 				messageText = bufferedReader.readLine();
 			}
-			catch(IOException ioException1) {
+			catch(final IOException ioException1) {
 				
 				try {
 					
 					bufferedReader.close();
 				}
-				catch(IOException ioException2) {
+				catch(final IOException ioException2) {
 
 					throw new RuntimeException(ioException2);
 				}
@@ -115,7 +115,9 @@ public class FileMessageDao implements MessageDao {
 			
 			final Timestamp messageTimestamp = Timestamp.valueOf(messageDateString);
 			
-			final Message message = new Message(messageText, messageTimestamp);
+			final Message message = new Message();
+			message.setText(messageText);
+			message.setTimestamp(messageTimestamp);
 			
 			messages.add(message);
 		}
@@ -124,7 +126,7 @@ public class FileMessageDao implements MessageDao {
 			
 			bufferedReader.close();
 		}
-		catch(IOException ioException) {
+		catch(final IOException ioException) {
 
 			throw new RuntimeException(ioException);
 		}
@@ -134,7 +136,7 @@ public class FileMessageDao implements MessageDao {
 			Collections.sort(messages, new Comparator<Message>() {
 				
 		        @Override
-		        public int compare(Message message2, Message message1) {
+		        public int compare(final Message message2, final Message message1) {
 		        	
 		            return  message1.getTimestamp().compareTo(message2.getTimestamp());
 		        }

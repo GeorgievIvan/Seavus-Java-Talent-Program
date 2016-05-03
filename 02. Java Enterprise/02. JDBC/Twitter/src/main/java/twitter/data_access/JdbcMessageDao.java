@@ -23,75 +23,6 @@ public class JdbcMessageDao implements MessageDao {
 		this.databaseUsername = databaseUsername;
 		this.databasePassword = databasePassword;
 	} 
-	
-	@Override
-	public void insertMessage(final Message message) throws RuntimeException {
-
-		Connection connection;
-		
-		try {
-			
-			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
-		}
-		catch(final SQLException sqlException) {
-			
-			throw new RuntimeException(sqlException);
-		}
-
-		PreparedStatement preparedStatement;
-		
-		try {
-			
-			preparedStatement = connection.prepareStatement("insert into message(text, timestamp) values(?, ?)");
-		}
-		catch(final SQLException sqlException1) {
-			
-			try {
-				
-				connection.close();
-			} 
-			catch(final SQLException sqlException2) {
-				
-				throw new RuntimeException(sqlException2);
-			}
-			
-			throw new RuntimeException(sqlException1);
-		}
-		
-		try {
-			
-			preparedStatement.setString(1, message.getText());
-			preparedStatement.setTimestamp(2, message.getTimestamp());
-			
-			preparedStatement.executeUpdate();
-		}
-		catch(final SQLException sqlException1) {
-			
-			throw new RuntimeException(sqlException1);
-		}
-		finally {
-			
-			try {
-				
-				preparedStatement.close();
-			}
-			catch(final SQLException sqlException2) {
-
-				throw new RuntimeException(sqlException2);
-			}
-			finally {
-				
-				try {
-					
-					connection.close();
-				} 
-				catch(final SQLException sqlException) {
-					
-					throw new RuntimeException(sqlException);
-				}
-			}
-		}
-	}
 
 	@Override
 	public List<Message> readAllMessages(final boolean orderByDateDescending) throws RuntimeException {
@@ -181,5 +112,74 @@ public class JdbcMessageDao implements MessageDao {
 		}
 		
 		return messages;
+	}
+	
+	@Override
+	public void insertMessage(final Message message) throws RuntimeException {
+
+		Connection connection;
+		
+		try {
+			
+			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
+		}
+		catch(final SQLException sqlException) {
+			
+			throw new RuntimeException(sqlException);
+		}
+
+		PreparedStatement preparedStatement;
+		
+		try {
+			
+			preparedStatement = connection.prepareStatement("insert into message(text, timestamp) values(?, ?)");
+		}
+		catch(final SQLException sqlException1) {
+			
+			try {
+				
+				connection.close();
+			} 
+			catch(final SQLException sqlException2) {
+				
+				throw new RuntimeException(sqlException2);
+			}
+			
+			throw new RuntimeException(sqlException1);
+		}
+		
+		try {
+			
+			preparedStatement.setString(1, message.getText());
+			preparedStatement.setTimestamp(2, message.getTimestamp());
+			
+			preparedStatement.executeUpdate();
+		}
+		catch(final SQLException sqlException1) {
+			
+			throw new RuntimeException(sqlException1);
+		}
+		finally {
+			
+			try {
+				
+				preparedStatement.close();
+			}
+			catch(final SQLException sqlException2) {
+
+				throw new RuntimeException(sqlException2);
+			}
+			finally {
+				
+				try {
+					
+					connection.close();
+				} 
+				catch(final SQLException sqlException) {
+					
+					throw new RuntimeException(sqlException);
+				}
+			}
+		}
 	}
 }

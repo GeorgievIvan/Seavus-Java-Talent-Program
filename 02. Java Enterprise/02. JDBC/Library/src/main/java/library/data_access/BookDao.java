@@ -6,8 +6,11 @@ import library.business.Book;
 
 public interface BookDao {
 	
-	void insertBook(final Book book);
 	List<Book> readAllBooks();
+	
+	void insertBook(final Book book);
+	
 	void updateBook(final Long bookId, final String newBookTitle);
+	
 	void deleteBook(final Long bookId);
 }

@@ -25,77 +25,6 @@ public class JdbcBookDao implements BookDao {
 	}
 	
 	@Override
-	public void insertBook(final Book book) {
-		
-		Connection connection;
-		
-		try {
-			
-			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
-		}
-		catch(final SQLException sqlException) {
-			
-			throw new RuntimeException(sqlException);
-		}
-		
-		PreparedStatement preparedStatement;
-		
-		try {
-			
-			preparedStatement = connection.prepareStatement("insert into book(isbn, title) values (?, ?)");
-		}
-		catch(final SQLException sqlException1) {
-			
-			try {
-				
-				connection.close();
-			}
-			catch(final SQLException sqlException2) {
-				
-				throw new RuntimeException(sqlException2);
-			}
-			
-			throw new RuntimeException(sqlException1);
-		}
-		
-		
-		try {
-			
-			preparedStatement.setString(1, book.getIsbn());
-			preparedStatement.setString(2, book.getTitle());
-			
-			preparedStatement.executeUpdate();
-
-		}
-		catch(final SQLException sqlException) {
-			
-			throw new RuntimeException(sqlException);
-		}
-		finally {
-			
-			try {
-				
-				preparedStatement.close();
-			}
-			catch(final SQLException sqlException) {
-				
-				throw new RuntimeException(sqlException);
-			}
-			finally {
-				
-				try {
-					
-					connection.close();
-				}
-				catch(final SQLException sqlException) {
-					
-					throw new RuntimeException(sqlException);
-				}
-			}
-		}
-	}
-
-	@Override
 	public List<Book> readAllBooks() {
 		
 		Connection connection;
@@ -134,7 +63,7 @@ public class JdbcBookDao implements BookDao {
 		try {
 			
 			final ResultSet resultSet = statement.executeQuery("select * from book");
-			
+
 			while(resultSet.next()) {
 				
 				final Long bookId = resultSet.getLong("id");
@@ -176,6 +105,76 @@ public class JdbcBookDao implements BookDao {
 		return books;
 	}
 
+	@Override
+	public void insertBook(final Book book) {
+		
+		Connection connection;
+		
+		try {
+			
+			connection = DriverManager.getConnection(databaseUrl, databaseUsername, databasePassword);
+		}
+		catch(final SQLException sqlException) {
+			
+			throw new RuntimeException(sqlException);
+		}
+		
+		PreparedStatement preparedStatement;
+		
+		try {
+			
+			preparedStatement = connection.prepareStatement("insert into book(isbn, title) values (?, ?)");
+		}
+		catch(final SQLException sqlException1) {
+			
+			try {
+				
+				connection.close();
+			}
+			catch(final SQLException sqlException2) {
+				
+				throw new RuntimeException(sqlException2);
+			}
+			
+			throw new RuntimeException(sqlException1);
+		}
+		
+		try {
+			
+			preparedStatement.setString(1, book.getIsbn());
+			preparedStatement.setString(2, book.getTitle());
+			
+			preparedStatement.executeUpdate();
+
+		}
+		catch(final SQLException sqlException) {
+			
+			throw new RuntimeException(sqlException);
+		}
+		finally {
+			
+			try {
+				
+				preparedStatement.close();
+			}
+			catch(final SQLException sqlException) {
+				
+				throw new RuntimeException(sqlException);
+			}
+			finally {
+				
+				try {
+					
+					connection.close();
+				}
+				catch(final SQLException sqlException) {
+					
+					throw new RuntimeException(sqlException);
+				}
+			}
+		}
+	}
+	
 	@Override
 	public void updateBook(final Long bookId, final String newBookTitle) {
 		

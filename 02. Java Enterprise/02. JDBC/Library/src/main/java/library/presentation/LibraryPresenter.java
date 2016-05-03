@@ -37,11 +37,11 @@ public class LibraryPresenter {
 			switch(input) {
 			
 			case "1":
-				registerBook();
+				listBooks();
 			break;
 			
 			case "2":
-				listBooks();
+				registerBook();
 			break;
 			
 			case "3":
@@ -62,17 +62,16 @@ public class LibraryPresenter {
 		}
 	}
 	
-	private void registerBook() {
+	
+	private void showMenu() {
 		
-		System.out.print("ISBN: ");
-		final String bookIsbn = scanner.nextLine();
-		
-		System.out.print("Title: ");
-		final String bookTitle = scanner.nextLine();
-
-		bookService.registerBook(bookIsbn, bookTitle);
-		
-		System.out.println("The book was successfully registered.");
+		System.out.println("--------MENU--------");
+		System.out.println("1. List books.");
+		System.out.println("2. Register book.");
+		System.out.println("3. Update book.");
+		System.out.println("4. Unregister book.");
+		System.out.println("5. Exit.");
+		System.out.println("--------------------");
 	}
 	
 	private void listBooks() {
@@ -85,6 +84,19 @@ public class LibraryPresenter {
 			
 			System.out.println(String.format("%-13d\t%-13s\t%s", book.getId(), book.getIsbn(), book.getTitle()));
 		}
+	}
+	
+	private void registerBook() {
+		
+		System.out.print("ISBN: ");
+		final String bookIsbn = scanner.nextLine();
+		
+		System.out.print("Title: ");
+		final String bookTitle = scanner.nextLine();
+
+		bookService.registerBook(bookIsbn, bookTitle);
+		
+		System.out.println("The book was successfully registered.");
 	}
 	
 	private void updateBook() {
@@ -108,16 +120,5 @@ public class LibraryPresenter {
 		bookService.unregisterBook(bookId);
 		
 		System.out.println("The book was successfully unregistered.");
-	}
-	
-	private void showMenu() {
-		
-		System.out.println("--------MENU--------");
-		System.out.println("1. Register book.");
-		System.out.println("2. List books.");
-		System.out.println("3. Update book.");
-		System.out.println("4. Unregister book.");
-		System.out.println("5. Exit.");
-		System.out.println("--------------------");
 	}
 }
