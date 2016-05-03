@@ -1,0 +1,37 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="index.css">
+</head>
+<body>
+	<div class = "calculatorContainer">
+		<h1> Calculate with post method </h1>
+		<form action="http://localhost:8080/Java_Servlet_-_WebCalculator/calculator" method="post">
+			<div>Number 1</div>
+			<input type="text" name="number1">
+			<div>Number 2</div>
+			<input type="text" name="number2">
+			<br>
+			<input type="radio" name="operation" value="addition" checked="checked"> Add
+			<br>
+			<input type="radio" name="operation" value="subtraction"> Subtract
+			<br>
+			<input type="submit" value="Calculate">
+		</form>
+	</div>
+	<div class = "calculatorContainer">
+		<h1> Calculate with get method </h1>
+		<form action="http://localhost:8080/Java_Servlet_-_WebCalculator/calculator" method="get">
+			<div>Number 1</div>
+			<input type="text" name="number1">
+			<div>Number 2</div>
+			<input type="text" name="number2">
+			<br>
+			<input type="radio" name="operation" value="addition" checked="checked"> Add
+			<br>
+			<input type="radio" name="operation" value="subtraction"> Subtract
+			<br>
+			<input type="submit" value="Calculate">
+		</form>
+	</div>
+</body>
+</html>
