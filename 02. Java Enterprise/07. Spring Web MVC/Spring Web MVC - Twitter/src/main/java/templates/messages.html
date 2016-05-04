@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<style>
+			body {
+				background-color: #F0FFF0;
+			}
+			#pageTitle {
+				text-align: center;
+			}
+			
+			#mainMessageContainer {
+				text-align: center;
+			}
+			
+			.messageContainer {
+				width: 300px;
+				display: inline-block;
+				border: 1px solid #DCDCDC;
+				padding: 5px;
+			}
+			
+			.messageTimestamp {
+				text-align: right;
+			}
+			
+			.messageText {
+				word-wrap: break-word;
+				text-align:left;
+			}
+			
+			#newMessageContainer {
+				text-align: center;
+				background-color: white;
+				padding: 10px;
+			}
+			
+			#newMessageTextArea {
+				width: 600px;
+				height: 200px;
+				max-width: 600px;
+				max-height: 200px;
+				padding: 10px;
+			}
+			
+			#newMessageButton {
+				padding: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+	
+		<div id = "newMessageContainer">
+			<h2> What's on your mind? </h2>
+			<form action = "#" th:action = "@{/messages}" th:object = "${newMessage}" method = "post">
+			<textarea id = "newMessageTextArea" maxlength = "255" placeholder = "Type your message here." th:field = "*{text}"> </textarea>
+			<br/>
+			<input type = "submit" value = "Send message" id = "newMessageButton"/>
+			</form>
+		</div>
+	
+		<div id = "mainMessageContainer">
+			<h3 th:text = "|You have ${messages.size()} messages|"> </h3>
+			<div th:each = "message : ${messages}">
+				<div class = "messageContainer">
+					<div class = "messageTimestamp" th:text="${message.getFormatedTimestamp()}"> message timestamp </div>
+					<div class = "messageText" th:text="${message.getText()}"> message text </div>
+				</div>
+				<br/>
+				<br/>
+			</div>
+		</div>
+		
+	</body>
+</html>
